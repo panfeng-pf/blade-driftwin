@@ -1,0 +1,30 @@
+<body>
+	<div id="drift-win">
+		<div style="border:1px solid;border-radius:5px;padding:20px;background:yellow;">
+			飘动窗口
+		</div>
+	</div>
+	
+	<div id="drift-win-2">
+		<div style="border:1px solid;border-radius:15px;padding:40px;background:lightgreen;">
+			飘动窗口
+		</div>
+	</div>
+	
+	<script type="text/javascript" src="./lib/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="../jquery.blade-driftwin.js"></script>
+	
+	<script>
+		$(function() {
+			$('#drift-win').bladeDriftWin({
+				xInit: 100,
+				yInit: 200
+			});
+			$('#drift-win-2').bladeDriftWin({
+				xInit: 500,
+				yInit: 100,
+				interval: 50
+			});
+		});
+	</script>
+</body>

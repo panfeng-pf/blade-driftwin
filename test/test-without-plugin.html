@@ -1,0 +1,62 @@
+<body bgcolor="#F7F7F7">
+	<div id="drift-win" style="position:absolute;z-index:99;">
+		<div style="border:1px solid;border-radius:5px;padding:20px;background:yellow;">
+			Æ®¶¯´°¿Ú
+		</div>
+	</div>
+	<script>
+		var opt = {
+	 			step: 1,
+	 			delay: 20,
+	 			x: 10,
+	 			y: 10,
+	 			xDir: 1,
+	 			yDir: 1
+	 	};
+		
+		var jsDriftWin = document.getElementById('drift-win');
+		var driftWinWidth = jsDriftWin.offsetWidth;
+		var driftWinHeight = jsDriftWin.offsetHeight;
+		
+		var winDrift = function() {
+			var winW = window.innerWidth;
+			var winH = window.innerHeight;
+			
+			var minX = window.scrollX;
+			var minY = window.scrollY;
+			
+			var maxX = minX + winW;
+			var maxY = minY + winH;
+			
+			var left = opt.x + minX;
+			var top = opt.y + minY;
+			
+			jsDriftWin.style.left = left + 'px';
+			jsDriftWin.style.top = top + 'px';
+			
+			opt.x += opt.step * opt.xDir;
+			if(opt.x + driftWinWidth + minX >= maxX) {
+				opt.xDir = -1;
+			}
+			if(opt.x + minX <= minX) {
+				opt.xDir = 1;
+			}
+			
+			opt.y += opt.step * opt.yDir;
+			if(opt.y + driftWinHeight + minY >= maxY) {
+				opt.yDir = -1;
+			}
+			if(opt.y + minY <= minY) {
+				opt.yDir = 1;
+			}
+		};
+		
+		var interval = setInterval(winDrift, opt.delay);
+		jsDriftWin.onmouseover = function(){
+			clearInterval(interval);
+		};
+		jsDriftWin.onmouseout = function(){
+			interval = setInterval(winDrift, opt.delay);
+		};
+	</script>
+</body>
